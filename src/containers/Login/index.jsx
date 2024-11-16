@@ -16,7 +16,7 @@ import {
 export function Login() {
   const schema = yup
     .object({
-      email: yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
+      email: yup.string().email('Digite um E-mail válido').required('O E-mail é obrigatório'),
       password:yup.string().min(6, 'A senha deve ter 6 caracteres').required('Digite uma senha'),
     })
     .required();
@@ -55,7 +55,7 @@ export function Login() {
             <input type="password" {...register('password')} />
             <p>{errors?.password?.message}</p>
           </InputContainer>
-          <Button buttonType="submit">Entrar</Button>
+          <Button type="submit">Entra</Button>
         </Form>
         <p>
           Não possui conta? <a>Cique aqui.</a>
