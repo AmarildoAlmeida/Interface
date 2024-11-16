@@ -1,16 +1,37 @@
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 import Logo from '../../assets/logo.svg';
+import { Button } from '../../components/Button';
 import {
-  Button,
   Container,
   Form,
   InputContainer,
   LeftContainer,
-  Link,
   RightContainer,
   Title,
 } from './styles';
 
 export function Login() {
+  const schema = yup
+    .object({
+      email: yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
+      password:yup.string().min(6, 'A senha deve ter 6 caracteres').required('Digite uma senha'),
+    })
+    .required();
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  console.log(errors);
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Container>
       <LeftContainer>
@@ -18,23 +39,27 @@ export function Login() {
       </LeftContainer>
       <RightContainer>
         <Title>
-          Olá, seja bem vindo ao<span> Dev Burguer!</span> Acesse com seu
-          <span>Login e senha.</span>
+          Olá, seja bem vindo ao <span> Dev Burguer!</span>
+          <br />
+          Acesse com seu <span> Login e senha.</span>
         </Title>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <InputContainer>
-            <label>Email</label>
-            <input type="email" />
+            <label> Email </label>
+            <input type="email" {...register('email')} />
+          <p>{errors?.email?.message}</p>
           </InputContainer>
 
           <InputContainer>
-            <label>Senha</label>
-            <input type="password" />
+            <label> Senha </label>
+            <input type="password" {...register('password')} />
+            <p>{errors?.password?.message}</p>
           </InputContainer>
-          <Link>Esqueci minha senha.</Link>
-          <Button>Entrar</Button>
+          <Button buttonType="submit">Entrar</Button>
         </Form>
-        <Link> Não possui conta? Cique aqui</Link>
+        <p>
+          Não possui conta? <a>Cique aqui.</a>
+        </p>
       </RightContainer>
     </Container>
   );
