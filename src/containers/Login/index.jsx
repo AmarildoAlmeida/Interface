@@ -1,9 +1,11 @@
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
 import Logo from '../../assets/logo.svg';
 import { Button } from '../../components/Button';
+import { api } from '../../services/api';
 import {
   Container,
   Form,
@@ -16,11 +18,17 @@ import {
 export function Login() {
   const schema = yup
     .object({
-      email: yup.string().email('Digite um E-mail válido').required('O E-mail é obrigatório'),
-      password:yup.string().min(6, 'A senha deve ter 6 caracteres').required('Digite uma senha'),
+      email: yup
+        .string()
+        .email('Digite um E-mail válido')
+        .required('O E-mail é obrigatório'),
+      password: yup
+        .string()
+        .min(6, 'A senha deve ter 6 caracteres')
+        .required('Digite uma senha'),
     })
     .required();
-  
+
   const {
     register,
     handleSubmit,
@@ -30,7 +38,20 @@ export function Login() {
   });
   console.log(errors);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const response = await toast.promise(
+      api.post('/session', {
+        email: data.email,
+        password: data.password,
+      }),
+      {
+        pending: 'Verificando seus dados',
+        success: 'Seja-vindo (a) 👌',
+        error: 'Email ou senha incorretos 🤯',
+      },
+    );
+    console.log(response);
+  };
 
   return (
     <Container>
@@ -47,7 +68,7 @@ export function Login() {
           <InputContainer>
             <label> Email </label>
             <input type="email" {...register('email')} />
-          <p>{errors?.email?.message}</p>
+            <p>{errors?.email?.message}</p>
           </InputContainer>
 
           <InputContainer>
