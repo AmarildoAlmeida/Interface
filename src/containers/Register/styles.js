@@ -43,17 +43,16 @@ p{
    color:#fff;
    font-size: 18px;
    font-weight: 800;
-a{
+a {
     text-decoration: underline;
 }
-
-
 }
 `;
 
 export const Title = styled.h2`
 font-family: 'Road Rage', sans-serif;
-color:#fff;
+font-size:40px;
+color:#9758A6;
 `;
 
 export const Form = styled.form`
