@@ -1,4 +1,7 @@
+import { Link as ReactLin} from 'react-router-dom';
 import styled from 'styled-components';
+
+
 import BackgroundLogin from '../../assets/background-login.svg';
 import Background from '../../assets/background.svg';
 
@@ -32,12 +35,13 @@ display:flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+
 height: 100%;
 width: 100%;
 max-width: 50%;
 
 background: url('${Background }'); 
-background-color: #252525;
+background-color: #1e1e1e;
 
 p{
    color:#fff;
@@ -99,7 +103,10 @@ p {
 }
 `;
 
-//export const Link = styled.//a``;
+export const Link = styled(ReactLin)`
+text-decoration:none;
+color:#fff;
+`;
 
 
 

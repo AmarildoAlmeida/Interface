@@ -1,7 +1,10 @@
+import { Link as ReactLin } from 'react-router-dom';
 import styled from 'styled-components';
+
+
 import BackgroundLogin from '../../assets/background-login.svg';
 import Background from '../../assets/background.svg';
-
+import { Link as ReactLink } from 'react-router-dom';
 
 export const Container = styled.div`
 background: transparent;
@@ -93,7 +96,15 @@ p {
 }
 `;
 
-//export const Link = styled.//a``;
+
+export const Link = styled(ReactLin)`
+text-decoration:none;
+color:#fff;
+`;
+
+
+
+
 
 
 
