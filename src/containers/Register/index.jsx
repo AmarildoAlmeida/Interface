@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
@@ -66,7 +67,7 @@ export function Register() {
         setTimeout (() =>{
           navigate('/login');
         },2000);
-        toast.success('Conta criada com sucesso!');
+        toast.success('Conta criada com sucesso,efetue seu login!');
       } else if (status === 409) {
         toast.error('Email já cadastrado! Faça o login para continuar');
       } else {

@@ -72,6 +72,7 @@ gap: 20px;
 padding: 20px;
 width: 100%;
 width:400px;
+
 `;
 
 export const InputContainer = styled.div`

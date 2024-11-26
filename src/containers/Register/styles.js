@@ -1,4 +1,4 @@
-import { Link as ReactLin } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 
@@ -20,6 +20,7 @@ background-position: center;
 height: 100%;
 width: 100%;
 max-width: 50%;
+
  
 display:flex;
 align-items:center;
@@ -39,13 +40,21 @@ height: 100%;
 width: 100%;
 max-width: 50%;
 
+
+
+
 background: url('${Background }'); 
 background-color: #252525;
-
+display: flex;
+height: 100%;
+width: 100%;
+max-width: 50%;
 p{
    color:#fff;
    font-size: 18px;
    font-weight: 800;
+
+
 a {
     text-decoration: underline;
 }
@@ -56,15 +65,20 @@ export const Title = styled.h2`
 font-family: 'Road Rage', sans-serif;
 font-size:40px;
 color:#9758A6;
+height:50px;
+margin-top: 80px;
+gap: 40px;
+
 `;
 
 export const Form = styled.form`
 display: flex;
 flex-direction:column;
-gap: 20px;
-padding: 20px;
+gap: 1px;
+padding: 2px;
 width: 100%;
 width:400px;
+
 `;
 
 export const InputContainer = styled.div`
@@ -97,7 +111,7 @@ p {
 `;
 
 
-export const Link = styled(ReactLin)`
+export const Link = styled(ReactLink)`
 text-decoration:none;
 color:#fff;
 `;
