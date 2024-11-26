@@ -16,12 +16,17 @@ import {
   Title,Link
 } from './styles';
 
-export function Login() {
+export function Login(){
   const navigate = useNavigate();
   const schema = yup
     .object({
-      email: yup.string().email('Digite um E-mail válido').required('O E-mail é obrigatório'),
-      password:yup.string().min(6, 'A senha deve ter 6 caracteres').required('Digite uma senha'),
+      email: yup.string()
+      .email('Digite um E-mail válido')
+      .required('O E-mail é obrigatório'),
+      password:yup
+      .string()
+      .min(6, 'A senha deve ter 6 caracteres')
+      .required('Digite uma senha'),
     })
     .required();
   
@@ -35,11 +40,13 @@ export function Login() {
   console.log(errors);
 
   const onSubmit = async (data) => {
-   const response= await toast.promise(
+   const {
+    data:{token},
+   } = await toast.promise(
     api.post('/session', {
       email:data.email,
       password:data.password,
-    }),
+    }), 
     {
       pending:'Verificando seus dados',
       success:{
@@ -54,7 +61,7 @@ export function Login() {
     },
    );
 
-    console.log(response);
+    localStorage.setItem('token', token);
   };
 
   return (
